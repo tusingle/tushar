@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import React, {usestate, useeffect, useReducer} from "react";
 import './App.css';
+const initialState = {count: 0, op: ''};
+
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 2 , op: 'increment' };
+    case 'decrement':
+      return {count: state.count - 2, op: 'decrement'};
+    default:
+     throw new Error();
+  }
+}
+
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="width100">
+     
+     <span>Health App</span>
+     <>
+      Count: {state.count}
+      op: {state.op}
+
+      <br/>
+
+       <button onClick={() => dispatch({type: 'increment'})}>+</button>
+
+      <br/>
+
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+    </>
+         </div>
   );
 }
 
