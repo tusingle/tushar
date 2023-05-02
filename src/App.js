@@ -3,7 +3,7 @@ import './App.css';
 const initialState = {count: 0, op: ''};
 
 
-function reducerfunction (state, action) {
+function reducer(state, action) {
   switch (action.type) {
     case 'increment':
       return {count: state.count + 2 , op: 'increment' };
